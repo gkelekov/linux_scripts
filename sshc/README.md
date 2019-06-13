@@ -2,12 +2,13 @@
 
 SSH Quick Connect is bash script for semi-automatic connection to all your servers using SSH connection.
 It is created for - 2 click access and login to any SSH server you need.
-##### Usage
+
+#### Usage
   - Type **“sshc”** (or whatever alias you have configurated) in your terminal.
   - You will be prompted to select numbers of your DC and your server, and will be automatically connected via SSH to selected server.
 
 
-##### Installation:
+#### Installation:
   - Download or "git pull" **sshc.sh** and **.sshconf** file.
   - Edit your bash or zsh rc file (.zshrc or .bashrc – found in home directory), by adding 1 line at the end of the file:
     ```sh
