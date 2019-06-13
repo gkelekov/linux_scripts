@@ -18,7 +18,9 @@ It is created for - 2 click access and login to any SSH server you need.
   - Now edit your **.sshconf** file and add your DC’s, users, user keys, user passwords, and all servers you want to connect to. 
     Users are added in “conn” section, dc’s in “dc” section, particular server within their DC sections. 
     **Note**: be sure that name of DC in server dc sections are same as names in.
+    
     Example: If your  AWS dc is named **“AWS”** 
+    
     ```sh
     {
     "id": "dc0",
