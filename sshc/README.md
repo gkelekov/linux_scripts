@@ -1,7 +1,5 @@
 # SSH Quick Connect
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 SSH Quick Connect is bash script for semi-automatic connection to all your servers using SSH connection.
 It is created for - 2 click access and login to any SSH server you need.
 ##### Usage
