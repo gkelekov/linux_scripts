@@ -1,0 +1,97 @@
+{
+        "conn": {
+                "username": "some_user",
+                "password": "some_user_password",
+                "username2": "some_user2",
+                "username2key": "/home/some_user/.ssh/some_user.key"
+        },
+        "dc":   [
+                {
+                "id": "dc0",
+                "dcname": "AWS",
+                "dcinfo": "Some info"
+                },
+                {
+                "id": "dc1",
+                "dcname": "Local",
+                "dcinfo": "Some info"
+                },
+                {
+                "id": "dc2",
+                "dcname": "Remote",
+                "dcinfo": "Some info"
+                },
+                {
+                "id": "dc3",
+                "dcname": "Remote2",
+                "dcinfo": "Some info"
+                }
+        ],
+        "AWS":  [
+                {
+                "id": "server0",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "1"
+                }
+        ],
+        "ITSoft":[
+                {
+                "id": "server0",
+                "servername": "some_server_name",
+                "serverip": "some.dns.com",
+                "serveruser": "0"
+                },
+                {
+                "id": "server1",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "0"
+                },
+                {
+                "id": "server2",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "1"
+                }
+        ],
+        "Minus5":  [
+                {
+                "id": "server0",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "1"
+                },
+                {
+                "id": "server1",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "0"
+                },
+                {
+                "id": "server2",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "0"
+                },
+                {
+                "id": "server3",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "0"
+                }
+        ],
+        "SuperSport":  [
+                {
+                "id": "server0",
+                "servername": "some_server_name",
+                "serverip": "192.168.0.1",
+                "serveruser": "0"
+                }
+        ],
+        "exit": [
+                {
+                "servername": "✖"
+                }
+        ]
+}
