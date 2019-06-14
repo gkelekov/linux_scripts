@@ -3,7 +3,9 @@
 # Bash SSH Menu
 ##########################################################################################
 # Install jq as this script is using settings from it's MANDATORY json file ".sshconfig" #
-# Edit settings in ".sshconfig" file.                                                    #
+# Edit settings in ".sshconfig" file. 							 #
+# Dependencies: sshpass (https://linux.die.net/man/1/sshpass)				 #
+#		jq (https://stedolan.github.io/jq/)					 #
 # Created by Goran Kelekovic                                                             #
 ##########################################################################################
 
@@ -43,14 +45,14 @@ addLists () {
             # If there are more servers, iterate until finished adding to lists
             if [ $dcLength -eq 0 ]
                     then
-	                      server=($( jq -r '.'$1'[] | select(.id=="server0") | .servername' $config ))
+	                server=($( jq -r '.'$1'[] | select(.id=="server0") | .servername' $config ))
                         ip=($( jq -r '.'$1'[] | select(.id=="server0") | .serverip' $config ))
                         user=($( jq -r '.'$1'[] | select(.id=="server0") | .serveruser' $config ))
                 elif [ $dcLength -ge 0 ]
                     then
                         for i in `seq 0 $dcLength`;
                         do 
-	                          server+=($( jq -r '.'$1'[] | select(.id=="server'$i'") | .servername' $config ))
+	                    server+=($( jq -r '.'$1'[] | select(.id=="server'$i'") | .servername' $config ))
                             ip+=($( jq -r '.'$1'[] | select(.id=="server'$i'") | .serverip' $config ))
                             user+=($( jq -r '.'$1'[] | select(.id=="server'$i'") | .serveruser' $config ))
                         done 
@@ -62,16 +64,16 @@ addLists () {
 }
 
 ## Connect to server function
-## Takes 3 arguments: $1 - serveruser (identifies whitch user to be used)
-##			              $2 - servername (identifies whitch server we are connecting to)
-##			              $3 - serverip (gets IP address or DNS for connection)
+## Takes 3 arguments: 	$1 - serveruser (identifies whitch user to be used)
+##			$2 - servername (identifies whitch server we are connecting to)
+##			$3 - serverip (gets IP address or DNS for connection)
 
 connectServer () {
                 if [ $1 -eq 0 ]
                     then
                         echo "Connecting as $( jq -r '.conn.username' $config ) to $2"
                         # sshpass adding pass from config file; adding username from config file
-			            sshpass -p $( jq -r '.conn.password' $config ) ssh $( jq -r '.conn.username' $config )@$3
+			sshpass -p $( jq -r '.conn.password' $config ) ssh $( jq -r '.conn.username' $config )@$3
                         break
                 elif [ $1 -eq 1 ]
                     then
