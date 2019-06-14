@@ -105,7 +105,6 @@ do
                         "${server[0]}")
                                 connectServer ${user[0]} ${server[0]} ${ip[0]}
                                 ;;
-                                       
                         "✖")
                                 exit
                                 break
@@ -127,7 +126,7 @@ do
                     case $opt in
                         "${server[0]}")  
                                 connectServer ${user[0]} ${server[0]} ${ip[0]}
-				                ;;
+				;;
                         "${server[1]}") 
                                 connectServer ${user[1]} ${server[1]} ${ip[1]}
                                 ;;
