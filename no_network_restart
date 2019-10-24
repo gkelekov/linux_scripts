@@ -1,0 +1,61 @@
+#!/bin/bash
+# 24.10.2019. - Restart if no network - gkelekovic 
+## 
+
+NIC=enp0s3              # most commonly is eth0
+REGEX=10.0.             # network that DNCP servers serves in 192.168.0.0/16 or 10.0.0.0/16 - just first 2 numbers are needed
+URL=google.com          # URL to ping
+PING_COUNT=5            # ping count
+CMD=`sudo /bin/ping -c $PING_COUNT $URL | grep -c "64 bytes"`   # command for counting sucessful pings 
+
+logger "Started check if internet is avalible..."
+
+check_ip() {
+	logger "Checking network connection..."
+	IP=`ifconfig $NIC | grep 'inet ' | cut -d: -f2 | awk '{ print $2}'`
+	if [[ $IP =~ $REGEX ]];then
+    		logger "IP from DHCP server found - $IP."
+	else
+    		logger "IP not found. Possbile problem with DHCP server."
+	fi
+}
+
+restart_net() {
+	logger "Restarting network and network manager..."
+	/etc/init.d/networking restart >> /var/log/syslog
+	/etc/init.d/network-manager restart >> /var/log/syslog
+	logger "Network and network manager restarted."
+}
+
+reboot() {
+	logger "Restarting server due no active Internet connection..."
+	/sbin/shutdown -r now
+}
+
+## get current ip
+IP=check_ip
+
+## starting check
+if (test "$CMD" -gt "3") then
+	logger "Internet connection ok."
+    	exit
+else
+    logger "$URL cannot be pinged. Trying again in 20 seconds"
+    sleep 20
+    if (test "$CMD" -gt "3") then
+        logger "Internet connection ok."
+	exit
+    else
+	logger "$URL still cannot be pinged."
+	restart_net
+	sleep 20
+	    if (test "$CMD" -gt "3") then
+		logger "Internet connection after network restart.."
+        	exit
+    	    else
+		logger "$URL still cannot be pinged."
+		reboot
+		exit
+	     fi
+     fi
+fi
